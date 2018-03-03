@@ -1,11 +1,10 @@
-const utils = require('../utils.js');
 let votePending = {};
 
 module.exports = {
     name: 'igl',
     description: 'Select an I.G.L from members in the voice channel',
     aliases: ['oghayghoogle'],
-    cooldown: 120,
+    cooldown: 1,
     guildOnly: true,
 
     execute(message, args) {
@@ -14,7 +13,9 @@ module.exports = {
                 voiceChannel = message.member.voiceChannel,
                 potentialIGLs = [],
                 userCount,
-                user;
+                user,
+                index,
+                igl;
 
             if (voiceChannel === undefined) {
                 resolve('User not connected to a voice channel');
@@ -34,8 +35,11 @@ module.exports = {
                 }
             });
 
-            resolve('TODO');
+            //resolve('TODO');
+            index = Math.floor(Math.random() * Math.floor(potentialIGLs.length));
+            igl = potentialIGLs[index];
 
+            resolve(igl.toString() + ' is da IGL now!');
         });
     }
 };
