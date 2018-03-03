@@ -4,7 +4,7 @@ module.exports = {
     name: 'igl',
     description: 'Select an I.G.L from members in the voice channel',
     aliases: ['oghayghoogle'],
-    cooldown: 30,
+    cooldown: 1,
     guildOnly: true,
 
     execute(message, args) {
@@ -30,7 +30,7 @@ module.exports = {
             }
 
             voiceChannel.members.forEach(member => {
-                if (!member.bot) {
+                if (!member.user.bot) {
                     potentialIGLs.push(member);
                 }
             });
