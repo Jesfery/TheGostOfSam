@@ -17,7 +17,7 @@ module.exports = {
                 index,
                 igl;
 
-            if (voiceChannel === undefined) {
+            if (!voiceChannel) {
                 resolve('User not connected to a voice channel');
                 return;
             }
