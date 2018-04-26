@@ -38,7 +38,7 @@ module.exports = {
             index = Math.floor(Math.random() * Math.floor(potentialIGLs.length));
             igl = potentialIGLs[index];
 
-            resolve(igl.toString() + ' is da IGL now!');
+            resolve('Look at me! ' + igl.toString() + ' is da IGL now!');
         });
     }
 };
