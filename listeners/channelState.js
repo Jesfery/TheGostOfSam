@@ -11,12 +11,9 @@ function checkStreaming(member) {
         }
     }
 
-    console.debug('here 1');
-    if (userActivity && userActivity.type === 'STREAMING' && !member.roles.has(guild.streamingRole.id)) {
-        console.debug('here 2');
+    if (userActivity && userActivity.type === 'STREAMING') {
         member.roles.add(guild.streamingRole);
-    } else if (member.roles.has(guild.streamingRole.id)) {
-        console.debug('here 3');
+    } else {
         member.roles.remove(guild.streamingRole);
     }
 
