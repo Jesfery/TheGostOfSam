@@ -1,17 +1,16 @@
 const utils = require('../utils.js');
 
 function onGuildMemberAdd(member) {
-    let guild = member.guild;
+    let guild = member.guild,
+        djRole = guild.roles.find('name', 'DJ'),
+        iglRole = guild.roles.find('name', 'igl');
 
-    //Give the new member the DJ role.
-    if (!guild.djRole) {
-        guild.djRole = guild.roles.find('name', 'DJ');
-        if (!guild.djRole) {
-            return;
-        }
+    if (djRole) {
+        member.roles.add(djRole);    
     }
-
-    member.roles.add(guild.djRole);
+    if (iglRole) {
+        member.roles.add(iglRole);
+    }
 }
 
 module.exports = {
