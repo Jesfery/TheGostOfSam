@@ -2,8 +2,8 @@ const utils = require('../utils.js');
 
 function onGuildMemberAdd(member) {
     let guild = member.guild,
-        djRole = guild.roles.find('name', 'DJ'),
-        iglRole = guild.roles.find('name', 'igl');
+        djRole = guild.roles.find(role =>  role.name === 'DJ'),
+        iglRole = guild.roles.find(role => role.name === 'igl');
 
     if (djRole) {
         member.roles.add(djRole);    
