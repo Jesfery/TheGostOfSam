@@ -10,7 +10,7 @@ module.exports = {
     execute(message, args) {
         return new Promise((resolve, reject) => {
             let subject = '',
-                voiceChannel = message.member.voiceChannel,
+                voiceChannel = message.member.voice.channel,
                 potentialIGLs = [],
                 userCount,
                 user,
