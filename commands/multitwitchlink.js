@@ -30,6 +30,13 @@ module.exports = {
         
             if (streamingMembersUrl.length > 0) {
                 streamingMembersUrl = 'http://multitwitch.tv/' + streamingMembersUrl.join('/');
+
+                if (args.length > 0) {
+                    if (args[0] === 'ping') {
+                        streamingMembersUrl = '@here ' + streamingMembersUrl;
+                    }
+                }
+
                 resolve(streamingMembersUrl);
                 return;
             }
