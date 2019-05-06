@@ -10,7 +10,7 @@ const memberAddListener = require('./listeners/memberAdd.js');
 
 const client = new Discord.Client();
 
-client.on('ready', () => {
+client.once('ready', () => {
     commandListener.init(client);
     memberPresenceListener.init(client);
     memberAddListener.init(client);
