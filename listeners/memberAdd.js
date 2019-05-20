@@ -3,7 +3,7 @@ const utils = require('../utils.js');
 function onGuildMemberAdd(member) {
     let guild = member.guild,
         djRole = guild.roles.find(role =>  role.name === 'DJ'),
-        iglRole = guild.roles.find(role => role.name === 'MEDIER-TEAM'),
+        iglRole = guild.roles.find(role => role.name === 'igl'),
         craigRole = guild.roles.find(role => role.name === 'Craig');
 
     if (djRole) {

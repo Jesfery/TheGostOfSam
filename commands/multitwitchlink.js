@@ -11,7 +11,7 @@ module.exports = {
         return new Promise((resolve, reject) => {
             let guild = message.member.guild;
 
-            let streamingRole = guild.roles.find(role => role.name === 'pro-streamer');
+            let streamingRole = guild.roles.find(role => role.name === 'medier-team');
             if (!streamingRole) {
                 resolve('Streaming role does not exist');
                 return;

@@ -13,7 +13,7 @@ function checkStreaming(oldPresence, newPresence) {
         promise;
 
     if (!guild.streamingRole) {
-        guild.streamingRole = guild.roles.find(role => role.name === 'pro-streamer');
+        guild.streamingRole = guild.roles.find(role => role.name === 'medier-team');
         if (!guild.streamingRole) {
             return;
         }
