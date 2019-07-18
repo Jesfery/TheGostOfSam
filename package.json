@@ -4,12 +4,12 @@
   "description": "A simple discord.js bot to manage Voice Channels",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index"
   },
   "author": "Jesfery",
   "license": "MIT",
   "dependencies": {
-    "discord.js": "github:hydrabolt/discord.js"
+    "discord.js": "github:discordjs/discord.js"
   },
   "devDependencies": {
     "eslint-config-standard": "^11.0.0",
