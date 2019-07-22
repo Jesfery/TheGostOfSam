@@ -9,7 +9,8 @@
   "author": "Jesfery",
   "license": "MIT",
   "dependencies": {
-    "discord.js": "github:discordjs/discord.js"
+    "discord.js": "github:discordjs/discord.js",
+    "dotenv": "^8.0.0"
   },
   "devDependencies": {
     "eslint-config-standard": "^11.0.0",
