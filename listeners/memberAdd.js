@@ -3,8 +3,7 @@ const utils = require('../utils.js');
 function onGuildMemberAdd(member) {
     let guild = member.guild,
         djRole = guild.roles.find(role =>  role.name === 'DJ'),
-        iglRole = guild.roles.find(role => role.name === 'igl'),
-        craigRole = guild.roles.find(role => role.name === 'Craig');
+        iglRole = guild.roles.find(role => role.name === 'igl');
 
     if (djRole) {
         member.roles.add(djRole);    
@@ -12,9 +11,6 @@ function onGuildMemberAdd(member) {
     if (iglRole) {
         member.roles.add(iglRole);
     }
-    if (craigRole) {
-        member.roles.add(craigRole);
-    }    
 }
 
 module.exports = {
