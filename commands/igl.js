@@ -1,5 +1,3 @@
-let votePending = {};
-
 module.exports = {
     name: 'igl',
     description: 'Select an I.G.L from members in the voice channel',
@@ -9,11 +7,9 @@ module.exports = {
 
     execute(message, args) {
         return new Promise((resolve, reject) => {
-            let subject = '',
-                voiceChannel = message.member.voice.channel,
+            let voiceChannel = message.member.voice.channel,
                 potentialIGLs = [],
                 userCount,
-                user,
                 index,
                 igl;
 

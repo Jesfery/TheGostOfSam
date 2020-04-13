@@ -1,5 +1,3 @@
-const utils = require('../utils.js');
-
 function checkStreaming(oldPresence, newPresence) {
     let newMember = newPresence.member;
 
@@ -9,17 +7,18 @@ function checkStreaming(oldPresence, newPresence) {
     }
 
     let guild = newMember.guild,
-        newActivityType = utils.get(newPresence, 'activity.type'),
         promise;
 
     if (!guild.streamingRole) {
-        guild.streamingRole = guild.roles.find(role => role.name === 'medier-team');
+        guild.streamingRole = guild.roles.cache.find(role => role.name === 'medier-team');
         if (!guild.streamingRole) {
             return;
         }
     }
 
-    if (newActivityType === 'STREAMING') {
+    let activity = getStreamingActivity(newPresence);
+
+    if (activity != null) {
         promise = newMember.roles.add(guild.streamingRole);
     } else {
         promise = newMember.roles.remove(guild.streamingRole);
@@ -28,7 +27,8 @@ function checkStreaming(oldPresence, newPresence) {
     promise.then(() => {    
         let streamingMembersUrl = [];
         guild.streamingRole.members.forEach(member => {
-            let activityUrl = utils.get(member, 'presence.activity.url');
+            let activity = getStreamingActivity(member.presence),
+                activityUrl = activity.url;
 
             if (activityUrl && activityUrl.length > 0) {
                 activityUrl = activityUrl.split('/');
@@ -37,15 +37,31 @@ function checkStreaming(oldPresence, newPresence) {
             } 
         });
 
-        let proStreamersChannel = guild.channels.get('438241001921052673');
-        if (streamingMembersUrl.length > 0) {
-            proStreamersChannel.setTopic('MultiTwitch link: http://multitwitch.tv/' + streamingMembersUrl.join('/'));
-        } else {
-            proStreamersChannel.setTopic('Theres nobody streaming...');
+        let proStreamersChannel = guild.channels.resolve('438241001921052673');
+        if (proStreamersChannel) {
+            if (streamingMembersUrl.length > 0) {
+                proStreamersChannel.setTopic('MultiTwitch link: http://multitwitch.tv/' + streamingMembersUrl.join('/'));
+            } else {
+                proStreamersChannel.setTopic('Theres nobody streaming...');
+            }
         }
     });
 
 }
+
+function getStreamingActivity(presence) {
+    let activity = null;
+
+    presence && presence.activities.every(a => {
+        if (a.type === 'STREAMING') {
+            activity = a;
+            return false;
+        }
+    });
+
+    return activity;
+}
+
 
 module.exports = {
     init: function (client) {
