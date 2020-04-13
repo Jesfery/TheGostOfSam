@@ -27,10 +27,10 @@ function checkStreaming(oldPresence, newPresence) {
     promise.then(() => {    
         let streamingMembersUrl = [];
         guild.streamingRole.members.forEach(member => {
-            let activity = getStreamingActivity(member.presence),
-                activityUrl = activity.url;
+            let a = getStreamingActivity(member.presence),
+                activityUrl = a && a.url;
 
-            if (activityUrl && activityUrl.length > 0) {
+            if (activityUrl && activityUrl.indexOf('https://www.twitch.tv/') === 0) {
                 activityUrl = activityUrl.split('/');
                 activityUrl = activityUrl[activityUrl.length -1];
                 streamingMembersUrl.push(activityUrl);
