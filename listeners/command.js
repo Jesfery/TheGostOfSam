@@ -19,9 +19,22 @@ module.exports = {
         client.on('message', message => {
             if (!message.content.startsWith(prefix) || message.author.bot) return;
         
-            const args = message.content.slice(prefix.length).split(/\s+/);
+            const args = message.content.slice(prefix.length).match(/\\?.|^$/g).reduce((p, c) => {
+                if (c === '"') {
+                    p.quote ^= 1;
+                } else if (!p.quote && c === ' ') {
+                    p.a.push('');
+                } else {
+                    p.a[p.a.length - 1] += c.replace(/\\(.)/, "$1");
+                }
+                return p;
+            }, {
+                a: ['']
+            }).a;
+            console.log(args);
+
             const commandName = args.shift().toLowerCase();
-        
+
             const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
         
             if (!command) return;
