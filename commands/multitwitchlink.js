@@ -4,10 +4,10 @@ function getStreamingActivity(presence) {
     let activity = null;
 
     presence && presence.activities.every(a => {
-        if (a.type === 'STREAMING') {
-            activity = a;
-            return false;
+        if (a.type !== 'STREAMING') {
+            return true;
         }
+        activity = a;
     });
 
     return activity;
@@ -33,7 +33,7 @@ module.exports = {
             let streamingMembersUrl = [];
             streamingRole.members.forEach(member => {
                 let a = getStreamingActivity(member.presence),
-                    activityUrl = a.url;
+                    activityUrl = a && a.url;
 
                 if (activityUrl && activityUrl.indexOf('https://www.twitch.tv/') === 0) {
                     activityUrl = activityUrl.split('/');
